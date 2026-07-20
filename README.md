@@ -23,4 +23,4 @@ A software and infrastructure practitioner with a strong background in Python, C
 ---
 
 ### 📫 Connect with Me
-- **LinkedIn:** [https://www.linkedin.com/in/peter-klinga-406799155/)
+- **LinkedIn:** [https://www.linkedin.com/in/peter-klinga-406799155/]
