@@ -1,16 +1,26 @@
-## Hi there 👋
+# Hi, I'm Peter 👋
 
-<!--
-**pklinga/pklinga** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+**DevOps & Python Engineer | MLOps & Machine Learning Systems**
 
-Here are some ideas to get you started:
+A software and infrastructure practitioner with a strong background in Python, CI/CD, and Cloud Native technologies. Currently expanding into end-to-end Machine Learning Operations (MLOps), model deployment, and AI engineering.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+---
+
+### 🔭 What I'm Currently Working On
+- **MLOps Pipelines:** Building end-to-end ML workflows using PyTorch, MLflow, DVC, and FastAPI.
+- **AI Infrastructure:** Containerizing and orchestrating ML models with Docker and Kubernetes for scalable production deployment.
+- **Degree & Continuous Growth:** Pursuing a B.Sc. in Computer Science alongside hands-on AI engineering projects.
+
+---
+
+### 🛠️ Tech Stack & Tools
+
+- **Languages:** Python, C, Bash
+- **DevOps & Cloud:** Docker, Kubernetes, CI/CD (GitHub Actions), Linux, Git
+- **Data & ML:** PyTorch, Pandas, Scikit-Learn, MLflow, DVC, FastAPI
+- **Automation:** Home Assistant, Shell Scripting
+
+---
+
+### 📫 Connect with Me
+- **LinkedIn:** [https://www.linkedin.com/in/peter-klinga-406799155/)
