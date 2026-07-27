@@ -1,0 +1,194 @@
+[
+    {
+        "id": "sophia_math1040",
+        "name": "Calculus I (MATH1040)",
+        "type": "Sophia",
+        "skills": [
+            "Calculus"
+        ]
+    },
+    {
+        "id": "sophia_huma1041",
+        "name": "Conflict Resolution (HUMA1041)",
+        "type": "Sophia",
+        "skills": [
+            "Communication"
+        ]
+    },
+    {
+        "id": "sophia_bus1200",
+        "name": "Developing Effective Teams (BUS1200)",
+        "type": "Sophia",
+        "skills": [
+            "Management",
+            "Communication"
+        ]
+    },
+    {
+        "id": "sophia_busi1010",
+        "name": "Financial Accounting (BUSI1010)",
+        "type": "Sophia",
+        "skills": [
+            "Finance_Accounting"
+        ]
+    },
+    {
+        "id": "sophia_eng0050",
+        "name": "Foundations of English Composition (ENG0050)",
+        "type": "Sophia",
+        "skills": [
+            "Communication"
+        ]
+    },
+    {
+        "id": "sophia_scie1020",
+        "name": "Human Biology (SCIE1020)",
+        "type": "Sophia",
+        "skills": [
+            "Natural_Science"
+        ]
+    },
+    {
+        "id": "sophia_chem1001",
+        "name": "Introduction to Chemistry (CHEM1001)",
+        "type": "Sophia",
+        "skills": [
+            "Natural_Science"
+        ]
+    },
+    {
+        "id": "sophia_math1020",
+        "name": "Introduction to College Mathematics (MATH1020)",
+        "type": "Sophia",
+        "skills": [
+            "College_Math"
+        ]
+    },
+    {
+        "id": "sophia_cs1001",
+        "name": "Introduction to Information Technology (CS1001)",
+        "type": "Sophia",
+        "skills": [
+            "IT_Basics"
+        ]
+    },
+    {
+        "id": "sophia_cs1101",
+        "name": "Introduction to Java Programming (CS1101)",
+        "type": "Sophia",
+        "skills": [
+            "Java",
+            "OOP"
+        ]
+    },
+    {
+        "id": "sophia_cs1015",
+        "name": "Introduction to Networking (CS1015)",
+        "type": "Sophia",
+        "skills": [
+            "Networking",
+            "IT_Basics"
+        ]
+    },
+    {
+        "id": "sophia_hlth1010",
+        "name": "Introduction to Nutrition (HLTH1010)",
+        "type": "Sophia",
+        "skills": [
+            "Natural_Science"
+        ]
+    },
+    {
+        "id": "sophia_cs1100",
+        "name": "Introduction to Python Programming (CS1100)",
+        "type": "Sophia",
+        "skills": [
+            "Python",
+            "OOP"
+        ]
+    },
+    {
+        "id": "sophia_cs1011",
+        "name": "Introduction to Relational Databases (CS1011)",
+        "type": "Sophia",
+        "skills": [
+            "SQL"
+        ]
+    },
+    {
+        "id": "sophia_stat1001",
+        "name": "Introduction to Statistics (STAT1001)",
+        "type": "Sophia",
+        "skills": [
+            "Statistics"
+        ]
+    },
+    {
+        "id": "sophia_cs1005",
+        "name": "Introduction to Web Development (CS1005)",
+        "type": "Sophia",
+        "skills": [
+            "WebDev"
+        ]
+    },
+    {
+        "id": "sophia_econ1001",
+        "name": "Macroeconomics (ECON1001)",
+        "type": "Sophia",
+        "skills": [
+            "Economics"
+        ]
+    },
+    {
+        "id": "sophia_busi1011",
+        "name": "Managerial Accounting (BUSI1011)",
+        "type": "Sophia",
+        "skills": [
+            "Finance_Accounting",
+            "Management"
+        ]
+    },
+    {
+        "id": "sophia_econ1002",
+        "name": "Microeconomics (ECON1002)",
+        "type": "Sophia",
+        "skills": [
+            "Economics"
+        ]
+    },
+    {
+        "id": "sophia_busi1060",
+        "name": "Personal Finance (BUSI1060)",
+        "type": "Sophia",
+        "skills": [
+            "Finance_Accounting"
+        ]
+    },
+    {
+        "id": "sophia_busi1015",
+        "name": "Principles of Finance (BUSI1015)",
+        "type": "Sophia",
+        "skills": [
+            "Finance_Accounting"
+        ]
+    },
+    {
+        "id": "sophia_comm1005",
+        "name": "Visual Communications (COMM1005)",
+        "type": "Sophia",
+        "skills": [
+            "Communication"
+        ]
+    },
+    {
+        "id": "background_devops",
+        "name": "Senior DevOps Experience",
+        "type": "Experience",
+        "skills": [
+            "DevOps",
+            "Python",
+            "SQL",
+            "Networking"
+        ]
+    }
+]

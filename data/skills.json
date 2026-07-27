@@ -1,0 +1,82 @@
+[
+    {
+        "id": "Python",
+        "category": "Programming",
+        "label": "Python"
+    },
+    {
+        "id": "Java",
+        "category": "Programming",
+        "label": "Java"
+    },
+    {
+        "id": "WebDev",
+        "category": "Programming",
+        "label": "Web Development (HTML/CSS/JS)"
+    },
+    {
+        "id": "SQL",
+        "category": "Databases",
+        "label": "SQL & Databases"
+    },
+    {
+        "id": "OOP",
+        "category": "CS Concepts",
+        "label": "Object-Oriented Programming"
+    },
+    {
+        "id": "IT_Basics",
+        "category": "CS Concepts",
+        "label": "IT Foundations"
+    },
+    {
+        "id": "Networking",
+        "category": "Infrastructure",
+        "label": "Computer Networking"
+    },
+    {
+        "id": "DevOps",
+        "category": "Infrastructure",
+        "label": "DevOps & Cloud"
+    },
+    {
+        "id": "Calculus",
+        "category": "Math",
+        "label": "Calculus"
+    },
+    {
+        "id": "Statistics",
+        "category": "Math",
+        "label": "Statistics & Probability"
+    },
+    {
+        "id": "College_Math",
+        "category": "Math",
+        "label": "College Mathematics"
+    },
+    {
+        "id": "Finance_Accounting",
+        "category": "Business",
+        "label": "Finance & Accounting"
+    },
+    {
+        "id": "Economics",
+        "category": "Business",
+        "label": "Economics (Micro & Macro)"
+    },
+    {
+        "id": "Management",
+        "category": "Business",
+        "label": "Management & Team Building"
+    },
+    {
+        "id": "Communication",
+        "category": "Humanities",
+        "label": "Communication & Writing"
+    },
+    {
+        "id": "Natural_Science",
+        "category": "Science",
+        "label": "Natural Sciences (Chem & Bio)"
+    }
+]
