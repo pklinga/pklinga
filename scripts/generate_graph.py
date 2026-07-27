@@ -45,13 +45,46 @@ def load_json_data(file_path: Path) -> list:
 
 
 def calculate_ai_similarity_weights(
-    course: list, skills: list, threshold: float = 0.25
+    courses: list, skills: list, threshold: float = 0.25
 ) -> list:
-    """AI/ML Module: Uses TF-IDF vectorization and Cosine Similarity to detect implicit semantic connections 
-        between course titles and skill labels."""
+    """AI/ML Module: Uses TF-IDF vectorization and Cosine Similarity to detect implicit semantic connections
+    between course titles and skill labels."""
     logging.info("Running AI/ML semantic similarity engine...")
 
-    course_texts =
+    course_texts = [c["name"] for c in courses]
+    skill_texts = [s["name"] for s in skills]
+    all_texts = course_texts + skill_texts
+
+    vectorizer = TfidfVectorizer(stop_words="english")
+
+    try:
+        tfidf_matrix = vectorizer.fit_transform(all_texts)
+        course_vectors = tfidf_matrix[: len(courses)]
+        skill_vectors = tfidf_matrix[len(courses) :]
+
+        similarity_matrix = cosine_similarity(course_vectors, skill_vectors)
+
+        ai_connections = []
+        for c_idx, course in enumerate(courses):
+            for s_idx, skill in enumerate(skills):
+                score = similarity_matrix[c_idx, s_idx]
+                if score >= threshold:
+                    ai_connections.append(
+                        {
+                            "course_id": course["id"],
+                            "skill_id": skill["id"],
+                            "score": float(score),
+                        }
+                    )
+                    logging.info(
+                        f"AI Detected implicit connection: '{course['name']}' -> '{skill['label']}' (Score: {score:.2f})"
+                    )
+        return ai_connections
+    except Exception as e:
+        logging.warning(
+            f"AI Similarity engine encountered an issue, skipping implicit links: {e}"
+        )
+        return []
 
 
 # Paths setup
