@@ -99,3 +99,48 @@ try:
 except Exception as e:
     logging.critical(f"Graph generation aborted due to data loading failure: {e}")
     exit(1)
+
+
+def build_knowledge_graph(skills: list, courses: list, ai_links: list) -> nx.Graph:
+    """Builds a NetworkX graph with dynamic node sizing based on connections."""
+    G = nx.Graph()
+    skill_weights = {s["id"]: 0 for s in skills}
+    for skill in skills:
+        G.add_node(
+            skill["id"],
+            label=skill["label"],
+            category=skill["category"],
+            color=CATEGORY_COLORS.get(skill["category"], "#9CA3AF"),
+            type="skill",
+        )
+    for course in courses:
+        for skill_id in course.get("skills", []):
+            if skill_id in skill_weights:
+                skill_weights[skill_id] += 1
+                G.add_edge(course["id"], skill_id, weight=1.0, edge_type="explicit")
+            else:
+                logging.warning(
+                    f"Validation Warning: Skill ID '{skill_id}' in course '{course['id']}' not found in skills.json"
+                )
+        G.add_node(
+            course["id"],
+            label=course["name"],
+            category="Course",
+            color=CATEGORY_COLORS["Course"],
+            type="course",
+            size=10,
+        )
+    for link in ai_links:
+        s_id = link["skill_id"]
+        c_id = link["course_id"]
+        if G.has_node(s_id) and G.has_node(c_id):
+            if not G.has_edge(c_id, s_id):
+                G.add_edge(c_id, s_id, weight=link["score"], edge_type="implicit")
+                skill_weights[s_id] += 0.5
+                logging.info(f"Added AI implicit edge: {c_id} <--> {s_id}")
+
+    for skill_id, weight in skill_weights.items():
+        if G.has_node(skill_id):
+            calculated_size = 15 + (weight * 8)
+            G.nodes[skill_id]["size"] = calculated_size
+    return G
