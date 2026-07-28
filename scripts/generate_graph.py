@@ -1,19 +1,19 @@
-# Add all imports
 import json
 import logging
+import sys
 from pathlib import Path
-import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+
 import networkx as nx
 from pyvis.network import Network
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
-
-# Configure logging for pipeline integration and clear executing tracking
-logging.basicConfig(
-    level=logging.INFO,
+# Configure logger for pipeline integration and clear executing tracking
+logger = logging.getLogger(__name__)
+logger.basicConfig(
+    level=logger.INFO,
     format="%(asctime)s [%(levelname)s %(message)s]",
-    handlers=[logging.StreamHandler()],
+    handlers=[logger.StreamHandler()],
 )
 
 # Set colors for each skill category
@@ -34,15 +34,15 @@ def load_json_data(file_path: Path) -> list:
     """Safely load JSON data with pipeline-ready error handling."""
     path = Path(file_path)
     if not path.exists():
-        logging.error(f"Pipeline failure: File not found at '{file_path}'")
+        logger.error(f"Pipeline failure: File not found at '{file_path}'")
         raise FileNotFoundError(f"Missing required dataset: {file_path}")
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
-            logging.info(f"Successfully loaded '{path.name}' ({len(data)} items).")
+            logger.info(f"Successfully loaded '{path.name}' ({len(data)} items).")
             return data
     except json.JSONDecodeError as e:
-        logging.error(f"Pipeline failure: Invalid JSON format in '{path}' -> {e}")
+        logger.error(f"Pipeline failure: Invalid JSON format in '{path}' -> {e}")
         raise
 
 
@@ -51,7 +51,7 @@ def calculate_ai_similarity_weights(
 ) -> list:
     """AI/ML Module: Uses TF-IDF vectorization and Cosine Similarity to detect implicit semantic connections
     between course titles and skill labels."""
-    logging.info("Running AI/ML semantic similarity engine...")
+    logger.info("Running AI/ML semantic similarity engine...")
 
     course_texts = [c["name"] for c in courses]
     skill_texts = [s["label"] for s in skills]
@@ -78,12 +78,12 @@ def calculate_ai_similarity_weights(
                             "score": float(score),
                         }
                     )
-                    logging.info(
+                    logger.info(
                         f"AI Detected implicit connection: '{course['name']}' -> '{skill['label']}' (Score: {score:.2f})"
                     )
         return ai_connections
-    except Exception as e:
-        logging.warning(
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        logger.warning(
             f"AI Similarity engine encountered an issue, skipping implicit links: {e}"
         )
         return []
@@ -98,9 +98,9 @@ courses_file = DATA_DIR / "courses.json"
 try:
     skills_data = load_json_data(skills_file)
     courses_data = load_json_data(courses_file)
-except Exception as e:
-    logging.critical(f"Graph generation aborted due to data loading failure: {e}")
-    exit(1)
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    logger.critical(f"Graph generation aborted due to data loading failure: {e}")
+    sys.exit(1)
 
 
 def build_knowledge_graph(skills: list, courses: list, ai_links: list) -> nx.Graph:
@@ -109,7 +109,7 @@ def build_knowledge_graph(skills: list, courses: list, ai_links: list) -> nx.Gra
     skill_weights = {s["id"]: 0 for s in skills}
 
     # Create Category Hub Nodes
-    categories = set(s["category"] for s in skills if "category" in s)
+    categories = {s["category"] for s in skills if "category" in s}
     for cat in categories:
         cat_node_id = f"cat_{cat}"
         G.add_node(
@@ -165,7 +165,7 @@ def build_knowledge_graph(skills: list, courses: list, ai_links: list) -> nx.Gra
                 skill_weights[skill_id] += 1
                 G.add_edge(course["id"], skill_id, weight=1.0, edge_type="explicit")
             else:
-                logging.warning(
+                logger.warning(
                     f"Validation Warning: Skill ID '{skill_id}' in course '{course['id']}' not found in skills.json"
                 )
 
@@ -173,11 +173,10 @@ def build_knowledge_graph(skills: list, courses: list, ai_links: list) -> nx.Gra
     for link in ai_links:
         s_id = link["skill_id"]
         c_id = link["course_id"]
-        if G.has_node(s_id) and G.has_node(c_id):
-            if not G.has_edge(c_id, s_id):
-                G.add_edge(c_id, s_id, weight=link["score"], edge_type="implicit")
-                skill_weights[s_id] += 0.5
-                logging.info(f"Added AI implicit edge: {c_id} <--> {s_id}")
+        if G.has_node(s_id) and G.has_node(c_id) and not G.has_edge(c_id, s_id):
+            G.add_edge(c_id, s_id, weight=link["score"], edge_type="implicit")
+            skill_weights[s_id] += 0.5
+            logger.info(f"Added AI implicit edge: {c_id} <--> {s_id}")
 
     # Calculate Dynamic Node Sizes for Skills
     for skill_id, weight in skill_weights.items():
@@ -190,7 +189,7 @@ def build_knowledge_graph(skills: list, courses: list, ai_links: list) -> nx.Gra
 
 def render_interactive_html(G: nx.Graph, output_path: str = "docs/index.html"):
     """Converts the NetworkX graph into an interactive PyVis HTML visualizer with customized physics and styling."""
-    logging.info(f"Rendering interactive graph to '{output_path}'...")
+    logger.info(f"Rendering interactive graph to '{output_path}'...")
 
     # Ensure target output directory exists
     output_file = Path(output_path)
@@ -236,20 +235,20 @@ def render_interactive_html(G: nx.Graph, output_path: str = "docs/index.html"):
     # Save output to static HTML
     try:
         net.write_html(str(output_file))
-        logging.info(f"Successfully generated interactive graph at: {output_file}")
+        logger.info(f"Successfully generated interactive graph at: {output_file}")
     except Exception as e:
-        logging.error(f"Failed to save HTML graph visualization: {e}")
-        raise e
+        logger.error(f"Failed to save HTML graph visualization: {e}")
+        raise
 
 
 def main():
-    logging.info("Starting Knowledge Graph pipeline execution...")
+    logger.info("Starting Knowledge Graph pipeline execution...")
     # 1. Load Data
     skills = load_json_data("data/skills.json")
     courses = load_json_data("data/courses.json")
 
     if not skills or not courses:
-        logging.error("Pipeline aborted: Essential data files are missing or empty.")
+        logger.error("Pipeline aborted: Essential data files are missing or empty.")
         return
 
     # 2. ML Engine: Calculate Implicit AI Connections
@@ -260,7 +259,7 @@ def main():
 
     # 4. Render HTML Output
     render_interactive_html(G, output_path="docs/index.html")
-    logging.info("Pipeline executed successfully!")
+    logger.info("Pipeline executed successfully!")
 
 
 if __name__ == "__main__":
