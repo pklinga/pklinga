@@ -21,6 +21,8 @@ A software and infrastructure practitioner with a strong background in Python, C
 - **Automation:** Home Assistant, Shell Scripting
 
 ---
+### Tudástérkép:
+- 🔗 **[Interaktív Kurzus/Tudástérkép megtekintése](https://pklinga.github.io/pklinga/)**
 
 ### 📫 Connect with Me
 - **LinkedIn:** [https://www.linkedin.com/in/peter-klinga-406799155/]
