@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #1F2937;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"category": "Business", "color": "#6B7280", "font": {"color": "#F3F4F6"}, "id": "cat_Business", "label": "BUSINESS", "shape": "hexagon", "size": 28, "title": "Category Cluster: Business", "type": "category_hub"}, {"category": "Business", "color": "#6B7280", "font": {"color": "#F3F4F6"}, "id": "Finance_Accounting", "label": "Finance \u0026 Accounting", "shape": "dot", "size": 47, "type": "skill"}, {"category": "Business", "color": "#6B7280", "font": {"color": "#F3F4F6"}, "id": "Economics", "label": "Economics (Micro \u0026 Macro)", "shape": "dot", "size": 31, "type": "skill"}, {"category": "Business", "color": "#6B7280", "font": {"color": "#F3F4F6"}, "id": "Management", "label": "Management \u0026 Team Building", "shape": "dot", "size": 31, "type": "skill"}, {"category": "Humanities", "color": "#14B8A6", "font": {"color": "#F3F4F6"}, "id": "cat_Humanities", "label": "HUMANITIES", "shape": "hexagon", "size": 28, "title": "Category Cluster: Humanities", "type": "category_hub"}, {"category": "Humanities", "color": "#14B8A6", "font": {"color": "#F3F4F6"}, "id": "Communication", "label": "Communication \u0026 Writing", "shape": "dot", "size": 47, "type": "skill"}, {"category": "Science", "color": "#84CC16", "font": {"color": "#F3F4F6"}, "id": "cat_Science", "label": "SCIENCE", "shape": "hexagon", "size": 28, "title": "Category Cluster: Science", "type": "category_hub"}, {"category": "Science", "color": "#84CC16", "font": {"color": "#F3F4F6"}, "id": "Natural_Science", "label": "Natural Sciences (Chem \u0026 Bio)", "shape": "dot", "size": 39, "type": "skill"}, {"category": "Math", "color": "#EC4899", "font": {"color": "#F3F4F6"}, "id": "cat_Math", "label": "MATH", "shape": "hexagon", "size": 28, "title": "Category Cluster: Math", "type": "category_hub"}, {"category": "Math", "color": "#EC4899", "font": {"color": "#F3F4F6"}, "id": "Calculus", "label": "Calculus", "shape": "dot", "size": 23, "type": "skill"}, {"category": "Math", "color": "#EC4899", "font": {"color": "#F3F4F6"}, "id": "Statistics", "label": "Statistics \u0026 Probability", "shape": "dot", "size": 23, "type": "skill"}, {"category": "Math", "color": "#EC4899", "font": {"color": "#F3F4F6"}, "id": "College_Math", "label": "College Mathematics", "shape": "dot", "size": 23, "type": "skill"}, {"category": "Programming", "color": "#3B82F6", "font": {"color": "#F3F4F6"}, "id": "cat_Programming", "label": "PROGRAMMING", "shape": "hexagon", "size": 28, "title": "Category Cluster: Programming", "type": "category_hub"}, {"category": "Programming", "color": "#3B82F6", "font": {"color": "#F3F4F6"}, "id": "Python", "label": "Python", "shape": "dot", "size": 31, "type": "skill"}, {"category": "Programming", "color": "#3B82F6", "font": {"color": "#F3F4F6"}, "id": "Java", "label": "Java", "shape": "dot", "size": 23, "type": "skill"}, {"category": "Programming", "color": "#3B82F6", "font": {"color": "#F3F4F6"}, "id": "WebDev", "label": "Web Development (HTML/CSS/JS)", "shape": "dot", "size": 23, "type": "skill"}, {"category": "CS Concepts", "color": "#8B5CF6", "font": {"color": "#F3F4F6"}, "id": "cat_CS Concepts", "label": "CS CONCEPTS", "shape": "hexagon", "size": 28, "title": "Category Cluster: CS Concepts", "type": "category_hub"}, {"category": "CS Concepts", "color": "#8B5CF6", "font": {"color": "#F3F4F6"}, "id": "OOP", "label": "Object-Oriented Programming", "shape": "dot", "size": 31, "type": "skill"}, {"category": "CS Concepts", "color": "#8B5CF6", "font": {"color": "#F3F4F6"}, "id": "IT_Basics", "label": "IT Foundations", "shape": "dot", "size": 31, "type": "skill"}, {"category": "Infrastructure", "color": "#F59E0B", "font": {"color": "#F3F4F6"}, "id": "cat_Infrastructure", "label": "INFRASTRUCTURE", "shape": "hexagon", "size": 28, "title": "Category Cluster: Infrastructure", "type": "category_hub"}, {"category": "Infrastructure", "color": "#F59E0B", "font": {"color": "#F3F4F6"}, "id": "Networking", "label": "Computer Networking", "shape": "dot", "size": 31, "type": "skill"}, {"category": "Infrastructure", "color": "#F59E0B", "font": {"color": "#F3F4F6"}, "id": "DevOps", "label": "DevOps \u0026 Cloud", "shape": "dot", "size": 23, "type": "skill"}, {"category": "Databases", "color": "#10B981", "font": {"color": "#F3F4F6"}, "id": "cat_Databases", "label": "DATABASES", "shape": "hexagon", "size": 28, "title": "Category Cluster: Databases", "type": "category_hub"}, {"category": "Databases", "color": "#10B981", "font": {"color": "#F3F4F6"}, "id": "SQL", "label": "SQL \u0026 Databases", "shape": "dot", "size": 31, "type": "skill"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_cs1100", "label": "Introduction to Python Programming (CS1100)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "background_devops", "label": "Senior DevOps Experience", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_cs1101", "label": "Introduction to Java Programming (CS1101)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_cs1005", "label": "Introduction to Web Development (CS1005)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_cs1011", "label": "Introduction to Relational Databases (CS1011)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_cs1001", "label": "Introduction to Information Technology (CS1001)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_cs1015", "label": "Introduction to Networking (CS1015)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_math1040", "label": "Calculus I (MATH1040)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_stat1001", "label": "Introduction to Statistics (STAT1001)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_math1020", "label": "Introduction to College Mathematics (MATH1020)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_busi1010", "label": "Financial Accounting (BUSI1010)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_busi1011", "label": "Managerial Accounting (BUSI1011)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_busi1060", "label": "Personal Finance (BUSI1060)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_busi1015", "label": "Principles of Finance (BUSI1015)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_econ1001", "label": "Macroeconomics (ECON1001)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_econ1002", "label": "Microeconomics (ECON1002)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_bus1200", "label": "Developing Effective Teams (BUS1200)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_huma1041", "label": "Conflict Resolution (HUMA1041)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_eng0050", "label": "Foundations of English Composition (ENG0050)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_comm1005", "label": "Visual Communications (COMM1005)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_scie1020", "label": "Human Biology (SCIE1020)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_chem1001", "label": "Introduction to Chemistry (CHEM1001)", "shape": "dot", "size": 10, "type": "course"}, {"category": "Course", "color": "#000000", "font": {"color": "#F3F4F6"}, "id": "sophia_hlth1010", "label": "Introduction to Nutrition (HLTH1010)", "shape": "dot", "size": 10, "type": "course"}]);
+                  edges = new vis.DataSet([{"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_Business", "to": "Finance_Accounting", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_Business", "to": "Economics", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_Business", "to": "Management", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_Humanities", "to": "Communication", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_Science", "to": "Natural_Science", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_Math", "to": "Calculus", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_Math", "to": "Statistics", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_Math", "to": "College_Math", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_Programming", "to": "Python", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_Programming", "to": "Java", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_Programming", "to": "WebDev", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_CS Concepts", "to": "OOP", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_CS Concepts", "to": "IT_Basics", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_Infrastructure", "to": "Networking", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_Infrastructure", "to": "DevOps", "width": 2.0}, {"color": {"color": "#4B5563", "opacity": 0.5}, "edge_type": "category", "from": "cat_Databases", "to": "SQL", "width": 2.0}, {"edge_type": "explicit", "from": "Python", "to": "sophia_cs1100", "width": 1.0}, {"edge_type": "explicit", "from": "Python", "to": "background_devops", "width": 1.0}, {"edge_type": "explicit", "from": "Java", "to": "sophia_cs1101", "width": 1.0}, {"edge_type": "explicit", "from": "WebDev", "to": "sophia_cs1005", "width": 1.0}, {"edge_type": "explicit", "from": "SQL", "to": "sophia_cs1011", "width": 1.0}, {"edge_type": "explicit", "from": "SQL", "to": "background_devops", "width": 1.0}, {"edge_type": "explicit", "from": "OOP", "to": "sophia_cs1101", "width": 1.0}, {"edge_type": "explicit", "from": "OOP", "to": "sophia_cs1100", "width": 1.0}, {"edge_type": "explicit", "from": "IT_Basics", "to": "sophia_cs1001", "width": 1.0}, {"edge_type": "explicit", "from": "IT_Basics", "to": "sophia_cs1015", "width": 1.0}, {"edge_type": "explicit", "from": "Networking", "to": "sophia_cs1015", "width": 1.0}, {"edge_type": "explicit", "from": "Networking", "to": "background_devops", "width": 1.0}, {"edge_type": "explicit", "from": "DevOps", "to": "background_devops", "width": 1.0}, {"edge_type": "explicit", "from": "Calculus", "to": "sophia_math1040", "width": 1.0}, {"edge_type": "explicit", "from": "Statistics", "to": "sophia_stat1001", "width": 1.0}, {"edge_type": "explicit", "from": "College_Math", "to": "sophia_math1020", "width": 1.0}, {"edge_type": "explicit", "from": "Finance_Accounting", "to": "sophia_busi1010", "width": 1.0}, {"edge_type": "explicit", "from": "Finance_Accounting", "to": "sophia_busi1011", "width": 1.0}, {"edge_type": "explicit", "from": "Finance_Accounting", "to": "sophia_busi1060", "width": 1.0}, {"edge_type": "explicit", "from": "Finance_Accounting", "to": "sophia_busi1015", "width": 1.0}, {"edge_type": "explicit", "from": "Economics", "to": "sophia_econ1001", "width": 1.0}, {"edge_type": "explicit", "from": "Economics", "to": "sophia_econ1002", "width": 1.0}, {"edge_type": "explicit", "from": "Management", "to": "sophia_bus1200", "width": 1.0}, {"edge_type": "explicit", "from": "Management", "to": "sophia_busi1011", "width": 1.0}, {"edge_type": "explicit", "from": "Communication", "to": "sophia_huma1041", "width": 1.0}, {"edge_type": "explicit", "from": "Communication", "to": "sophia_bus1200", "width": 1.0}, {"edge_type": "explicit", "from": "Communication", "to": "sophia_eng0050", "width": 1.0}, {"edge_type": "explicit", "from": "Communication", "to": "sophia_comm1005", "width": 1.0}, {"edge_type": "explicit", "from": "Natural_Science", "to": "sophia_scie1020", "width": 1.0}, {"edge_type": "explicit", "from": "Natural_Science", "to": "sophia_chem1001", "width": 1.0}, {"edge_type": "explicit", "from": "Natural_Science", "to": "sophia_hlth1010", "width": 1.0}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"nodes": {"borderWidth": 2, "borderWidthSelected": 4, "font": {"color": "#FFFFFF", "size": 16, "face": "Tahoma", "strokeWidth": 3, "strokeColor": "#1F2937"}}, "edges": {"color": {"color": "#6B7280", "highlight": "#F59E0B", "inherit": false}, "smooth": {"type": "continuous"}}, "physics": {"barnesHut": {"gravitationalConstant": -12000, "centralGravity": 0.3, "springLength": 95, "springConstant": 0.04, "damping": 0.09}, "minVelocity": 0.75}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
