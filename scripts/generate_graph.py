@@ -144,3 +144,79 @@ def build_knowledge_graph(skills: list, courses: list, ai_links: list) -> nx.Gra
             calculated_size = 15 + (weight * 8)
             G.nodes[skill_id]["size"] = calculated_size
     return G
+
+
+def render_interactive_html(G: nx.Graph, output_path: str = "docs/index.html"):
+    """Converts the NetworkX graph into an interactive PyVis HTML visualizer with customized physics and styling."""
+    logging.info(f"Rendering interactive graph to '{output_path}'...")
+
+    # Initialize PyVis Network
+    net = Network(height="750px", width="100%", bgcolor="#1F2937", font_color="#F3F4F6")
+
+    # Import NetworkX graph structure
+    net.from_nx(G)
+
+    # Configure Physics Engine and Visual Behavior
+    net.set_options("""
+        var option = {
+        "nodes": {
+            "borderWidth": 2,
+            "borderWidthSelected": 4,
+            "font": {
+                "size": 14,
+                "face": "Tahoma"
+            }
+        }
+        "edges": {
+            "color": {
+                "inherit": false
+            }
+            "smooth": {
+                "type": "continous"
+            }
+        }
+        "physics": {
+            "barnesHut": {
+                "gravitationalConstant": -8000,
+                "cantralGravity": 0.3,
+                "springLength": 95,
+                "springConstant": 0.04,
+                "damping": 0.09
+            }
+        "minVelocity": 0.75
+        }
+    }
+    """)
+
+    # Save output to static HTML
+    try:
+        net.write_html(output_path)
+        logging.info(f"Successfully generated interactive graph at: {output_path}")
+    except Exception as e:
+        logging.error(f"Failed to save HTML graph visualization: {e}")
+        raise e
+
+
+def main():
+    logging.info("Starting Knowledge Graph pipeline execution...")
+    # 1. Load Data
+    skills = load_json_data("data/skills.json")
+    courses = load_json_data("data/courses.json")
+
+    if not skills or not courses:
+        logging.error("Pipeline aborted: Essential data files are missing or empty.")
+        return
+
+    # 2. ML Engine: Calculate Implicit AI Connections
+    ai_links = calculate_ai_similarity_weights(courses, skills, threshold=0.25)
+
+    # 3. Build Graph Logic
+    G = build_knowledge_graph(skills, courses, ai_links)
+
+    # 4. Render HTML Output
+    render_interactive_html(G, output_path="docs/index.html")
+    logging.info("Pipeline executed successfully!")
+
+
+if __name__ == "__main__":
+    main()
