@@ -21,7 +21,7 @@ A software and infrastructure practitioner with a strong background in Python, C
 - **Automation:** Home Assistant, Shell Scripting
 
 ---
-### Tudástérkép:
+### Skills-Graph:
 - 🔗 **[Interactive Academic & Skills Progression Graph](https://pklinga.github.io/pklinga/)**
 
 ### 📫 Connect with Me
