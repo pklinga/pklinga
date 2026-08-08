@@ -34,7 +34,7 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install networkx pyvis scikit-learn; fi
 
       - name: Generate Knowledge Graph
-        run: python generate_graph.py
+        run: python scripts/generate_graph.py
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
