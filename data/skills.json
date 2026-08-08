@@ -15,6 +15,11 @@
         "label": "Web Development (HTML/CSS/JS)"
     },
     {
+        "id": "Software Engineering",
+        "category": "Programming",
+        "label": "Software Engineering"
+    },
+    {
         "id": "SQL",
         "category": "Databases",
         "label": "SQL & Databases"
@@ -33,6 +38,11 @@
         "id": "Networking",
         "category": "Infrastructure",
         "label": "Computer Networking"
+    },
+    {
+        "id": "Cybersecurity",
+        "category": "CS Concepts",
+        "label": "Cybersecurity"
     },
     {
         "id": "DevOps",

@@ -181,6 +181,34 @@
         ]
     },
     {
+        "id": "study.com_cs110",
+        "name": "Introduction to Cybersecurity (CS110)",
+        "type": "Study.com",
+        "skills": [
+            "Cybersecurity",
+            "Networking"
+        ]
+    },
+    {
+        "id": "study.com_cs307",
+        "name": "Software Engineering (CS307)",
+        "type": "Study.com",
+        "skills": [
+            "Software Engineering",
+            "Software Design",
+            "Software Architecture"
+        ]
+    },
+    {
+        "id": "study.com_cs113",
+        "name": "Programming in Python (CS113)",
+        "type": "Study.com",
+        "skills": [
+            "Python",
+            "OOP"
+        ]
+    },
+    {
         "id": "background_devops",
         "name": "Senior DevOps Experience",
         "type": "Experience",
