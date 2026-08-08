@@ -10,11 +10,12 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 # Configure logger for pipeline integration and clear executing tracking
 logger = logging.getLogger(__name__)
-logger.basicConfig(
-    level=logger.INFO,
+logging.basicConfig(
+    level=logging.INFO,
     format="%(asctime)s [%(levelname)s %(message)s]",
-    handlers=[logger.StreamHandler()],
+    handlers=[logging.StreamHandler()],
 )
+logger = logging.getLogger(__name__)
 
 # Set colors for each skill category
 CATEGORY_COLORS = {

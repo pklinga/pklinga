@@ -45,6 +45,16 @@
         "label": "Cybersecurity"
     },
     {
+        "id": "Software Design",
+        "category": "Programming",
+        "label": "Software Design"
+    },
+    {
+        "id": "Software Architecture",
+        "category": "Programming",
+        "label": "Software Architecture"
+    },
+    {
         "id": "DevOps",
         "category": "Infrastructure",
         "label": "DevOps & Cloud"
