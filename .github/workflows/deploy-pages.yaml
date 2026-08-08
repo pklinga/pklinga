@@ -23,6 +23,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install networkx pyvis scikit-learn; fi
+
+      - name: Generate Knowledge Graph
+        run: python generate_graph.py
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
