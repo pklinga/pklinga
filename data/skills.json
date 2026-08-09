@@ -45,6 +45,11 @@
         "label": "Cybersecurity"
     },
     {
+        "id": "Operating_Systems",
+        "category": "Infrastructure",
+        "label": "Operating Systems"
+    },
+    {
         "id": "Software Design",
         "category": "Programming",
         "label": "Software Design"

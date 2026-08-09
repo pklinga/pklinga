@@ -132,6 +132,16 @@
         ]
     },
     {
+        "id": "study.com_cs105",
+        "name": "Introduction to Operating Systems (CS105)",
+        "type": "Study.com",
+        "skills": [
+            "Networking",
+            "OS",
+            "IT_Basics"
+        ]
+    },
+    {
         "id": "sophia_econ1001",
         "name": "Macroeconomics (ECON1001)",
         "type": "Sophia",
