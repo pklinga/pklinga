@@ -142,6 +142,16 @@
         ]
     },
     {
+        "id": "study.com_cs305",
+        "name": "Operating Systems II (CS305)",
+        "type": "Study.com",
+        "skills": [
+            "Networking",
+            "OS",
+            "IT_Basics"
+        ]
+    },
+    {
         "id": "sophia_econ1001",
         "name": "Macroeconomics (ECON1001)",
         "type": "Sophia",
