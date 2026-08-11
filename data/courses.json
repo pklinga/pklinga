@@ -150,6 +150,15 @@
         ]
     },
     {
+        "id": "study.com_cs306",
+        "name": "Computer Architecture (CS306)",
+        "type": "Study.com",
+        "skills": [
+            "Networking",
+            "Operating_Sytems"
+        ]
+    },
+    {
         "id": "sophia_econ1001",
         "name": "Macroeconomics (ECON1001)",
         "type": "Sophia",

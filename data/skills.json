@@ -50,14 +50,19 @@
         "label": "Operating Systems"
     },
     {
-        "id": "Software Design",
+        "id": "Software_Design",
         "category": "Programming",
         "label": "Software Design"
     },
     {
-        "id": "Software Architecture",
+        "id": "Software_Architecture",
         "category": "Programming",
         "label": "Software Architecture"
+    },
+    {
+        "id": "Computer_Architecture",
+        "category": "Infrastructure",
+        "label": "Computer Architecture"
     },
     {
         "id": "DevOps",
