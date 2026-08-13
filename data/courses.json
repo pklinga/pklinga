@@ -217,6 +217,15 @@
         ]
     },
     {
+        "id": "study.com_cs201",
+        "name": "Data Structures & Algorithms (CS201)",
+        "type": "Study.com",
+        "skills": [
+            "Data_Structures",
+            "Algorithms"
+        ]
+    },
+    {
         "id": "study.com_cs307",
         "name": "Software Engineering (CS307)",
         "type": "Study.com",

@@ -45,6 +45,16 @@
         "label": "Cybersecurity"
     },
     {
+        "id": "Algorithms",
+        "category": "Programming",
+        "label": "Algorithms"
+    },
+    {
+        "id": "Data_Structures",
+        "category": "Programming",
+        "label": "Data_Structures"
+    },
+    {
         "id": "Operating_Systems",
         "category": "Infrastructure",
         "label": "Operating Systems"
