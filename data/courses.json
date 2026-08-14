@@ -4,7 +4,8 @@
         "name": "Calculus I (MATH1040)",
         "type": "Sophia",
         "skills": [
-            "Calculus"
+            "Calculus",
+            "College_Math"
         ]
     },
     {
@@ -214,6 +215,14 @@
         "skills": [
             "Cybersecurity",
             "Networking"
+        ]
+    },
+    {
+        "id": "study.com_cs108",
+        "name": "Discrete Mathematics (CS108)",
+        "type": "Study.com",
+        "skills": [
+            "College_Math"
         ]
     },
     {

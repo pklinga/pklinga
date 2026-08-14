@@ -5,6 +5,11 @@
         "label": "Python"
     },
     {
+        "id": "Discrete_Mathematics",
+        "category": "Math",
+        "label": "Discrete_Mathematics"
+    },
+    {
         "id": "Java",
         "category": "Programming",
         "label": "Java"
