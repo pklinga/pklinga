@@ -74,6 +74,14 @@
         ]
     },
     {
+        "id": "study.com_cs102",
+        "name": "Fundamentals of Information Technology (CS102)",
+        "type": "Study.com",
+        "skills": [
+            "IT_Basics"
+        ]
+    },
+    {
         "id": "sophia_cs1101",
         "name": "Introduction to Java Programming (CS1101)",
         "type": "Sophia",
@@ -139,6 +147,25 @@
         "skills": [
             "Networking",
             "Operating_Sytems"
+        ]
+    },
+    {
+        "id": "study.com_cs303",
+        "name": "Database Management (CS303)",
+        "type": "Study.com",
+        "skills": [
+            "Data_Structures",
+            "SQL",
+            "Python"
+        ]
+    },
+    {
+        "id": "study.com_cs311",
+        "name": "Artificial Intelligence (CS311)",
+        "type": "Study.com",
+        "skills": [
+            "Python",
+            "AI"
         ]
     },
     {

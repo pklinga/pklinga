@@ -5,6 +5,11 @@
         "label": "Python"
     },
     {
+        "id": "AI",
+        "category": "Programming",
+        "label": "AI"
+    },
+    {
         "id": "Discrete_Mathematics",
         "category": "Math",
         "label": "Discrete_Mathematics"
